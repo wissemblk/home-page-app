@@ -5,7 +5,7 @@ export default function Navbar() {
    
     
     return ( 
-      
+      <div className="header-img"> 
         <div className='nav-container'>
       <nav className="Nav">
         <a href="/" className="Nav-Title">
@@ -31,7 +31,8 @@ export default function Navbar() {
   <div class="dropdown-content">
     <a href="/">Coding</a>
     <a href="/">Fiction</a>
-    <a href="/">Historical</a>
+    <a href="/">Philosophy</a>
+    <a href="/">Horror</a>
   </div>
 </div>
             
@@ -54,6 +55,7 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
+      </div>
       </div>
      
     );

@@ -3,9 +3,9 @@ import Navbar from "./NavBar";
 
 export default function Header() {
     return (
-        <div className="header-container">
+        <div className="header">
             <Navbar />
-            <div className="header-img"><img src="/Background image.png" /></div>
+            
         </div>
     );
 }
