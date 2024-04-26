@@ -3,12 +3,12 @@
     margin: 0;
   }
   
-  body, html {
+  body {
     margin: 0;
     padding: 0;
     height: 100%;
     width:100%;
-    place-items: initial;
+    
    
   }
   
@@ -140,9 +140,9 @@
       
     width: 100%;
     max-width: 200px;
-    height: 20px;
+    height: 40px;
     display: flex;
-    background-color: #f2731fd9;
+    
     align-items: center;
     border-radius: 60px;
     padding: 10px 20px;
@@ -227,25 +227,6 @@
     top: 350px;
   }
   
-  .shelf1{
-    box-sizing: content-box;
-    border: 2px solid black;
-    width: 1200px;
-    height: 200px;
-    position: absolute;
-    top: 500px;
-    left: 50px;
-  }
-  
-  .shelf2{
-    box-sizing: content-box;
-    border: 2px solid black;
-    width: 1200px;
-    height: 200px;
-    position: absolute;
-    top: 750px;
-    left: 50px;
-  }
   
   
   .quote-corner{
@@ -255,7 +236,7 @@
     border:2px solid black;
     height: 200px;
     width: 500px;
-    top: 1000px;
+    top: 1400px;
     left: 100px;
   
   }

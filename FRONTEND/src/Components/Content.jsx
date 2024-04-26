@@ -1,4 +1,5 @@
-
+import './Shelves.css';
+import Quotes from './Quotes';
 
 export default function Content(){
 
@@ -13,12 +14,18 @@ export default function Content(){
             <div className="shelf2">
                 <p>this is book shelf2</p>
             </div>
+            <div>
+                <div className="genre-shelves">
+                    <ul>  <li><div className="gshelf1">coding</div></li>
+                    <li><div className="gshelf2">fiction</div></li>
+                    <li><div className="gshelf3">philosophy</div></li>
+                   <li> <div className="gshelf4">psychologie</div></li></ul>
+                  
 
-            <div className="quote-corner">
-                
-                <p>this is a quote.</p>
-               
+                </div>
             </div>
+        <Quotes/>
+            
         </div>
 
         </>

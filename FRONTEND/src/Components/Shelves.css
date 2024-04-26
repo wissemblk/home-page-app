@@ -1,0 +1,39 @@
+
+.shelf1{
+    box-sizing: content-box;
+    border: 2px solid black;
+    width: 1200px;
+    height: 200px;
+    position: absolute;
+    top: 500px;
+    left: 50px;
+  }
+  
+  .shelf2{
+    box-sizing: content-box;
+    border: 2px solid black;
+    width: 1200px;
+    height: 200px;
+    position: absolute;
+    top: 750px;
+    left: 50px;
+  }
+  .genre-shelves ul {
+    display: flex;
+    justify-content: flex-start; /* or space-between or space-around */
+    list-style: none;
+    align-items: center;
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+  }
+  
+  .genre-shelves ul li {
+    box-sizing: content-box;
+    border: 2px solid black;
+    width: 300px;
+    height: 200px;
+    margin-top: 400px;
+   
+    
+  }
+  
