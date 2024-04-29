@@ -3,7 +3,7 @@ import './Quotes.css';
 import quotes from "./apiQuotes";
 
 function Quotes() {
-    const [quote, setQuote] = useState({ text: "rgojtgn", author: "fgjf" });
+    const [quote, setQuote] = useState({ text: "to be or not to be,that is the question", author: "Shakespear" });
 
     const random = () => {
         const select = quotes[Math.floor(Math.random() * quotes.length)];

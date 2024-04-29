@@ -1,7 +1,12 @@
-
+.book-container1{
+  display: flew;
+  flex-direction: row;
+}
 .shelf1{
     box-sizing: content-box;
     border: 2px solid black;
+    display: flex;
+    flex-direction: column;
     width: 1200px;
     height: 200px;
     position: absolute;
@@ -12,6 +17,8 @@
   .shelf2{
     box-sizing: content-box;
     border: 2px solid black;
+    display: flex;
+    flex-direction: column;
     width: 1200px;
     height: 200px;
     position: absolute;
@@ -37,3 +44,17 @@
     
   }
   
+
+  .book-cell{
+    
+    width: 100px; 
+    height: 130px; 
+    background-color: #f0f0f0; 
+    border: 2px solid #333; 
+    border-radius: 10px;
+    position: absolute;
+    bottom: 280px;
+    left:100px;
+  
+  
+}
