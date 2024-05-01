@@ -1,30 +1,23 @@
 .book-container1{
   display: flew;
   flex-direction: row;
+  
 }
 .shelf1{
     box-sizing: content-box;
-    border: 2px solid black;
+    border: 0.5px solid rgb(203, 201, 201);
+    border-radius: 20px;
+    background-color: #f2eee8;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 1200px;
-    height: 200px;
+    height: 530px;
     position: absolute;
-    top: 500px;
+    top: 450px;
     left: 50px;
   }
   
-  .shelf2{
-    box-sizing: content-box;
-    border: 2px solid black;
-    display: flex;
-    flex-direction: column;
-    width: 1200px;
-    height: 200px;
-    position: absolute;
-    top: 750px;
-    left: 50px;
-  }
+ 
   .genre-shelves ul {
     display: flex;
     justify-content: flex-start; /* or space-between or space-around */
@@ -36,10 +29,10 @@
   
   .genre-shelves ul li {
     box-sizing: content-box;
-    border: 2px solid black;
+    border: 2px solid #f2eee8;
     width: 300px;
     height: 200px;
-    margin-top: 400px;
+    margin-top: 500px;
    
     
   }
@@ -47,14 +40,102 @@
 
   .book-cell{
     
-    width: 100px; 
-    height: 130px; 
-    background-color: #f0f0f0; 
-    border: 2px solid #333; 
+    width: 170px; 
+    height: 220px; 
+    background-color: #f0f0f0;  
     border-radius: 10px;
-    position: absolute;
-    bottom: 280px;
-    left:100px;
-  
+    position: relative;
+    margin: 25px;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   
 }
+
+.book-cell img{
+  position: relative;
+  border: 0.5px solid rgb(165, 156, 156);
+  height: 160px;
+  width:120px ;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+
+.shopLink{
+  position: absolute;
+  left: 15px;
+  width: 50px;
+  margin: 2px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-family:sans-serif;
+  color: #000000;
+  background-color:rgb(149, 205, 64);
+}
+.shopLink:hover{
+  color:rgb(149, 205, 64);
+  background-color:rgb(0, 0, 0);
+  transition: 0.5s;
+  
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  bottom: 5px;
+  left: 40%;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.pagination a:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination .active a {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination .disabled a {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination .disabled a:hover {
+  background-color: transparent;
+}
+
+.pagination .prev-next {
+  display: flex;
+  align-items: center;
+}
+
+.pagination .prev-next a {
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.pagination .prev-next a:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+

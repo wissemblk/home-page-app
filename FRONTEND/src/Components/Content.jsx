@@ -1,44 +1,71 @@
 import './Shelves.css';
 import Quotes from './Quotes';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import BookCard from './BookCard';
+import axios from 'axios';
+import Pagination from './Pagination';
 
-export default function Content(){
-    //*const [booData,setBookData] = useState([]);
-    //const [currentPage,setCurrentPage] = useState(1);
-    //const [booksPerPage,setBookPerPage] = useState(5);
+export default function Content() {
+    const [books, setBooks] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const booksPerPage = 10;
 
-    //fetch books
+    useEffect(() => {
+        axios.get(`http://localhost:5174/api/books`)
+            .then(response => {
+                setBooks(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching books:', error);
+            });
+    }, []);
 
-    //const lastPostIndex = currentPage * booksPerPage;
-    //const firstPostIndex = lastPostIndex - booksPerPage;
-    //setBookData.slice(firstPostIndex, lastPostIndex);
-    return(<>
-        <div className="book-container1">
-            
-        <h2 className="casetitle">Books Showcase</h2>
+    const indexOfLastBook = currentPage * booksPerPage;
+    const indexOfFirstBook = indexOfLastBook - booksPerPage;
+    const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
-        <div className="shelf1">
-                <p>this is book shelf1</p>
-                
-            </div>
-            <div className="shelf2">
-                <p>this is book shelf2</p>
-               
-            </div>
-            <div>
-                <div className="genre-shelves">
-                    <ul>  <li><div className="gshelf1">coding</div></li>
-                    <li><div className="gshelf2">fiction</div></li>
-                    <li><div className="gshelf3">philosophy</div></li>
-                   <li> <div className="gshelf4">psychologie</div></li></ul>
-                  
+    const booksInRows = [];
+    while (currentBooks.length > 0) {
+        booksInRows.push(currentBooks.splice(0, 2));
+    }
+   
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    console.log(currentBooks);
 
+    return (
+        <>
+            <div className="book-container1">
+                <h2 className="casetitle">Books Showcase</h2>
+                <div className="shelf1">
+                {booksInRows.map((row, index) => (
+                        <div key={index} className="row">
+                            {row.map(book => (
+                                <BookCard key={book.id} book={book} />
+                            ))}
+                        </div>
+                    ))}
+                    <Pagination
+                booksPerPage={booksPerPage}
+                totalBooks={books.length}
+                paginate={paginate}
+            />
+                    
                 </div>
+                
+                <div>
+                    <div className="genre-shelves">
+                        <ul>
+                            <li><div className="gshelf1">coding</div></li>
+                            <li><div className="gshelf2">fiction</div></li>
+                            <li><div className="gshelf3">philosophy</div></li>
+                            <li><div className="gshelf4">psychologie</div></li>
+                        </ul>
+                    </div>
+                </div>
+                <Quotes />
             </div>
-        <Quotes/>
-            
-        </div>
-
+           
         </>
     );
 }
+

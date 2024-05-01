@@ -8,9 +8,11 @@ import Footer from './Components/Footer';
 export default function App(){
   return(
     <>
+    <div className='wrap'>
     <Header />
     <Content />
     <Footer/>
+    </div>
     </>
   );
 }
