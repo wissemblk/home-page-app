@@ -32,6 +32,16 @@ export default function Content() {
     const paginate = pageNumber => setCurrentPage(pageNumber);
     console.log(currentBooks);
 
+    const genreBooks = {};
+    currentBooks.forEach(book => {
+        if (!genreBooks[book.category]) {
+            categoryBooks[book.category] = [];
+        }
+        if (categoryBooks[book.category]) {
+            categoryBooks[book.category].push(book);
+        }
+    });
+
     return (
         <>
             <div className="book-container1">
@@ -54,11 +64,16 @@ export default function Content() {
                 
                 <div>
                     <div className="genre-shelves">
-                        <ul>
-                            <li><div className="gshelf1">coding</div></li>
-                            <li><div className="gshelf2">fiction</div></li>
-                            <li><div className="gshelf3">philosophy</div></li>
-                            <li><div className="gshelf4">psychologie</div></li>
+                    <ul>
+                            {Object.keys(genreBooks).map((category, index) => (
+                                <li key={index}>
+                                    <div className={`gshelf`}>
+                                        {categoryBooks[category].map(book => (
+                                            <BookCard key={book.id} book={book} />
+                                        ))}
+                                    </div>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

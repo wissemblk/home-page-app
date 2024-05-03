@@ -1,8 +1,21 @@
-
+import React, { useState } from 'react';
 
 export default function Navbar() {
 
   
+    const [books, setBooks] = useState([]);
+  
+    const handleSearch = (event) => {
+      event.preventDefault();
+      const searchTerm = event.target.elements.Q.value;
+      axios.get(`http://localhost:5174/api/books/search?term=${searchTerm}`)
+        .then(response => {
+          setBooks(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching books:', error);
+        });
+    };
    
     
     return ( 
@@ -14,13 +27,13 @@ export default function Navbar() {
         </a>
         <ul>
         <li className="SearchBar">
-            <form action="">
-              <input type="text" name="Q" placeholder="type book title" />
-              <button>
-                <img src="/magnifying-glass.png"  />
-              </button>
-            </form>
-          </li>
+              <form onSubmit={handleSearch}>
+                <input type="text" name="Q" placeholder="type book title" />
+                <button type="submit" >
+                  <img src="/magnifying-glass.png" />
+                </button>
+              </form>
+            </li>
   
           <li className="abril-fatface-regular">
             <a href="/">HOME</a>

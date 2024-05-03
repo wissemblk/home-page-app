@@ -1,5 +1,5 @@
 .book-container1{
-  display: flew;
+  display: flex;
   flex-direction: row;
   
 }
@@ -46,9 +46,6 @@
     border-radius: 10px;
     position: relative;
     margin: 25px;
-
-    justify-content: center;
-    align-items: center;
     text-align: center;
   
 }

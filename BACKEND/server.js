@@ -9,7 +9,7 @@ const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: 'wissem321456',
-    database: 'fika',
+    database: 'LibraryFika',
     connectionLimit: 10
 });
 
@@ -18,46 +18,34 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get("/api/books", (req, res) => {
-  const selectBookData = "SELECT * FROM bookinfo";
- 
-  db.query(selectBookData, (err, results) => {
-      if (err) {
-          console.error('Failed to fetch book infos:', err);
-          res.sendStatus(500);
-          return;
-      }
-      res.json(results);
-  });
-});
 
+
+//fetching books
 app.get("/api/books", (req, res) => {
-    const selectBookData = "SELECT * FROM bookinfo";
+    const selectBookData = "SELECT * FROM book";
    
     db.query(selectBookData, (err, results) => {
         if (err) {
-            console.error('Failed to fetch book infos:', err);
+            console.error('Failed to fetch books:', err);
             res.sendStatus(500);
             return;
         }
         res.json(results);
     });
 });
-
+//fetching books for searchbar
 app.get('/api/books/search', (req, res) => {
-  const searchTerm = req.query.term;
-  const query = `SELECT * FROM bookinfo WHERE title LIKE '%${searchTerm}%'`;
-
-  connection.query(query, (err, results) => {
+    const searchTerm = req.query.term;
+    const query = `SELECT * FROM book WHERE title LIKE ?`;
+    connection.query(query, [`%${searchTerm}%`], (err, results) => {
       if (err) {
-          console.error('Error executing query:', err);
-          res.status(500).json({ error: 'Internal Server Error' });
-          return;
+        console.error('Error executing query:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+        return;
       }
-
       res.json(results);
+    });
   });
-});
 
 
 
