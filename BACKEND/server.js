@@ -44,16 +44,17 @@ app.get('/api/books/search', (req, res) => {
 });
 
 app.get('/api/books/genres', (req, res) => {
-    const { genre, page } = req.query;
-    const limit = 10;
+    const { category, page } = req.query;
+    console.log('category:', category);
+    const limit = 5;
     const offset = (page - 1) * limit;
 
     let query = 'SELECT * FROM book';
     const params = [];
 
-    if (genre) {
-        query += ' WHERE genre = ?';
-        params.push(genre);
+    if (category) {
+        query += ' WHERE category = ?';
+        params.push(category);
     }
 
     query += ' LIMIT ? OFFSET ?';

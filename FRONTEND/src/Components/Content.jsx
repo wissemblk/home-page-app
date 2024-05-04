@@ -60,24 +60,30 @@ export default function Content() {
                     />
                 </div>
                 <div>
-                <div >
-                        <ul className="genre-shelves">
+                <div className="genre-shelves">
+                        <ul >
+                           <li> 
+                           <h2>Fantasy:</h2>
                             <div className='gshelf1'>
-                            <li>
-                                <BookListG genre="fantasy" />
-                            </li></div>
-                            <div className='gshelf2'>
-                            <li>
-                                <BookListG genre="coding" />
-                            </li></div>
-                            <div className='gshelf3'>
-                            <li>
-                                <BookListG genre="psychologie" />
-                            </li></div>
-                            <div className='gshelf4'>
-                            <li>
-                                <BookListG genre="philosophie" />
-                            </li></div>
+                                
+                                <BookListG category={'fantasy'}/>
+                            </div></li>
+                            <li> 
+                            <h2>Coding:</h2>
+                                <div className='gshelf2'>
+                                <BookListG category={'coding'}/>
+                            </div></li>
+                            <li> 
+                            <h2>Psychologie:</h2>
+                                <div className='gshelf3'>
+                                <BookListG category={'psychology'}/>
+                            </div></li>
+                            <li> 
+                            <h2>Philosophy:</h2>
+                                <div className='gshelf4'>
+                                <BookListG category={'philosophy'}/>
+                            </div></li>
+
                         </ul>
                     </div>
                 </div>

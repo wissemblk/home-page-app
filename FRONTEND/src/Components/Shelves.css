@@ -1,6 +1,7 @@
 .book-container1{
   display: flex;
-  flex-direction: row;
+  flex-direction:column;
+  
   
 }
 .shelf1{
@@ -17,23 +18,34 @@
     left: 50px;
   }
   
- 
+ .genre-shelves{
+  position: absolute;
+  top: 1150px;
+  left: 50px;
+ }
   .genre-shelves ul {
     display: flex;
-    justify-content: flex-start; /* or space-between or space-around */
+    flex-direction: row;
     list-style: none;
     align-items: center;
     flex-wrap: nowrap; 
     overflow-x: auto; 
+   
   }
   
   .genre-shelves ul li {
     box-sizing: content-box;
     border: 2px solid #f2eee8;
-    width: 300px;
+    width: 290px;
     height: 200px;
-    /* margin-top: 500px; */ /* Remove or adjust this line */
+    margin-right:10px ;
+    
 }
+.genre-shelves h2{
+  position: absolute;
+  top: -40px;
+}
+
 
   
 
@@ -132,6 +144,12 @@
   background-color: #f0f0f0;
 }
 
+
+.pagine-genres{
+  position: absolute;
+  bottom: -15px;
+ 
+}
 
 
 
