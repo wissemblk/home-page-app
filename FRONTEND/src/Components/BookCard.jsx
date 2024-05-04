@@ -1,23 +1,25 @@
 import React from 'react';
 import Favorite from './Fav';
 
-function BookCard({book}) {
-   //shelves.css
-  return (
-    <div className='book-cell'> 
-    
-    <a href='/' title={`click to get ${book.title} info card`} target="_blank" rel="noopener noreferrer"><div className='card_img' >
-           <img src={`/${book.cover}`}  alt='book img'/>
-        </div> </a>
+function BookCard({ id,book }) {
+   
+    //if (!book || !book.title || !book.cover || !book.linkShop) {
+     //   return null; 
+    //}
 
-        <div className='card_info'>
-            
-            <a href={book.linkShop} className='shopLink'target="_blank" rel="noopener noreferrer">Link</a>
-            <Favorite/>
+    return (
+        <div className='book-cell'> 
+            <a href='/' title={`Click to get ${book.title} info card`} target="_blank" rel="noopener noreferrer">
+                <div className='card_img'>
+                    <img src={`/${book.cover}`}  alt={book.title} />
+                </div>
+            </a>
+            <div className='card_info'>
+                <a href={book.linkShop} className='shopLink' target="_blank" rel="noopener noreferrer">Link</a>
+                <Favorite />
+            </div>
         </div>
-                
-     </div>
-  )
+    );
 }
 
 export default BookCard;

@@ -43,33 +43,55 @@ app.get('/api/books/search', (req, res) => {
     });
 });
 
-app.get('/api/books/genres', (req, res) => {
-    const { category, page } = req.query;
-    console.log('category:', category);
-    const limit = 5;
-    const offset = (page - 1) * limit;
+app.get('/api/books/genres', async (req, res) => {
+    try {
+        const { category } = req.query;
+        console.log('Category:', category);
 
-    let query = 'SELECT * FROM book';
-    const params = [];
-
-    if (category) {
-        query += ' WHERE category = ?';
-        params.push(category);
+        const query = 'SELECT * FROM book WHERE category = ? LIMIT 1';
+        db.query(query, [category], (error, results) => {
+            if (error) {
+                console.error('Error fetching books:', error);
+                res.status(500).json({ error: 'Failed to fetch books' });
+                return;
+            }
+            res.json(results);
+        });
+    } catch (error) {
+        console.error('Error fetching books:', error);
+        res.status(500).json({ error: 'Failed to fetch books' });
     }
+});
 
-    query += ' LIMIT ? OFFSET ?';
-    params.push(limit, offset);
 
-    db.query(query, params, (error, results) => {
-        if (error) {
-            console.error('Error fetching books:', error);
-            res.status(500).json({ error: 'Failed to fetch books' });
-            return;
+
+app.post("/api/INSERT/FAV", (req, res) => {
+    const { idBook, idUser } = req.body;
+
+    const addFav = "INSERT INTO `fika`.`favouritbook` (`Favourite_id`, `Book_id`, `User_id`) VALUES ('0', ?, ?);";
+    db.query(addFav, [idBook, idUser], (err, result) => {
+        if (err) {
+            console.error("Error inserting favorite:", err);
+            return res.status(500).json({ error: "Error inserting favorite" });
         }
-
-        res.json(results);
+        console.log("Favorite inserted successfully");
+        res.status(200).json({ message: "Favorite inserted successfully" });
     });
 });
+
+app.delete("/api/DELETE/FAV", (req, res) => {
+    const { idBook, idUser } = req.body;
+    const removeFav = "DELETE FROM `favouritbook` WHERE `bookID` = ? AND `userID` = ?;";
+    db.query(removeFav, [idBook, idUser], (err, result) => {
+      if (err) {
+        console.error("Error removing favorite:", err);
+        return res.status(500).json({ error: "Error removing favorite" });
+      }
+      console.log("Favorite removed successfully");
+      res.status(200).json({ message: "Favorite removed successfully" });
+    });
+  });
+
 
 app.listen(PORT, () => {
     console.log("Server listening on Port", PORT);
