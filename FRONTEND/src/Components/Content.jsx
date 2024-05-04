@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import BookCard from './BookCard';
 import axios from 'axios';
 import Pagination from './Pagination';
+import BookListG from './BookListHome';
 
 export default function Content() {
     const [books, setBooks] = useState([]);
@@ -28,18 +29,16 @@ export default function Content() {
     while (currentBooks.length > 0) {
         booksInRows.push(currentBooks.splice(0, 2));
     }
-   
+
     const paginate = pageNumber => setCurrentPage(pageNumber);
     console.log(currentBooks);
 
     const genreBooks = {};
     currentBooks.forEach(book => {
         if (!genreBooks[book.category]) {
-            categoryBooks[book.category] = [];
+            genreBooks[book.category] = [];
         }
-        if (categoryBooks[book.category]) {
-            categoryBooks[book.category].push(book);
-        }
+        genreBooks[book.category].push(book);
     });
 
     return (
@@ -47,7 +46,7 @@ export default function Content() {
             <div className="book-container1">
                 <h2 className="casetitle">Books Showcase</h2>
                 <div className="shelf1">
-                {booksInRows.map((row, index) => (
+                    {booksInRows.map((row, index) => (
                         <div key={index} className="row">
                             {row.map(book => (
                                 <BookCard key={book.id} book={book} />
@@ -55,32 +54,35 @@ export default function Content() {
                         </div>
                     ))}
                     <Pagination
-                booksPerPage={booksPerPage}
-                totalBooks={books.length}
-                paginate={paginate}
-            />
-                    
+                        booksPerPage={booksPerPage}
+                        totalBooks={books.length}
+                        paginate={paginate}
+                    />
                 </div>
-                
                 <div>
-                    <div className="genre-shelves">
-                    <ul>
-                            {Object.keys(genreBooks).map((category, index) => (
-                                <li key={index}>
-                                    <div className={`gshelf`}>
-                                        {categoryBooks[category].map(book => (
-                                            <BookCard key={book.id} book={book} />
-                                        ))}
-                                    </div>
-                                </li>
-                            ))}
+                <div >
+                        <ul className="genre-shelves">
+                            <div className='gshelf1'>
+                            <li>
+                                <BookListG genre="fantasy" />
+                            </li></div>
+                            <div className='gshelf2'>
+                            <li>
+                                <BookListG genre="coding" />
+                            </li></div>
+                            <div className='gshelf3'>
+                            <li>
+                                <BookListG genre="psychologie" />
+                            </li></div>
+                            <div className='gshelf4'>
+                            <li>
+                                <BookListG genre="philosophie" />
+                            </li></div>
                         </ul>
                     </div>
                 </div>
                 <Quotes />
             </div>
-           
         </>
     );
 }
-

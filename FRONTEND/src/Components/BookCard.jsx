@@ -6,8 +6,8 @@ function BookCard({book}) {
   return (
     <div className='book-cell'> 
     
-    <a href='/' title='click to access infos!' target="_blank" rel="noopener noreferrer"><div className='card_img' >
-           <img src={book.cover} alt='book img'/>
+    <a href='/' title={`click to get ${book.title} info card`} target="_blank" rel="noopener noreferrer"><div className='card_img' >
+           <img src={`/${book.cover}`}  alt='book img'/>
         </div> </a>
 
         <div className='card_info'>

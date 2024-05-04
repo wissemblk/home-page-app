@@ -17,10 +17,6 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-
-//fetching books
 app.get("/api/books", (req, res) => {
     const selectBookData = "SELECT * FROM book";
    
@@ -33,11 +29,11 @@ app.get("/api/books", (req, res) => {
         res.json(results);
     });
 });
-//fetching books for searchbar
+
 app.get('/api/books/search', (req, res) => {
     const searchTerm = req.query.term;
     const query = `SELECT * FROM book WHERE title LIKE ?`;
-    connection.query(query, [`%${searchTerm}%`], (err, results) => {
+    db.query(query, [`%${searchTerm}%`], (err, results) => {
       if (err) {
         console.error('Error executing query:', err);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -45,9 +41,34 @@ app.get('/api/books/search', (req, res) => {
       }
       res.json(results);
     });
-  });
+});
 
+app.get('/api/books/genres', (req, res) => {
+    const { genre, page } = req.query;
+    const limit = 10;
+    const offset = (page - 1) * limit;
 
+    let query = 'SELECT * FROM book';
+    const params = [];
+
+    if (genre) {
+        query += ' WHERE genre = ?';
+        params.push(genre);
+    }
+
+    query += ' LIMIT ? OFFSET ?';
+    params.push(limit, offset);
+
+    db.query(query, params, (error, results) => {
+        if (error) {
+            console.error('Error fetching books:', error);
+            res.status(500).json({ error: 'Failed to fetch books' });
+            return;
+        }
+
+        res.json(results);
+    });
+});
 
 app.listen(PORT, () => {
     console.log("Server listening on Port", PORT);
