@@ -40,6 +40,10 @@ export default function Navbar() {
           </li>
          
           <li className="abril-fatface-regular">
+            <a href="/">FAVOURITE</a>
+          </li>
+
+          <li className="abril-fatface-regular">
             <a href="/">ABOUT</a>
           </li>
           <li >

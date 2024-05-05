@@ -1,18 +1,11 @@
-import './Components/Styling.css';
-import Content from './Components/Content';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
+import Home from "./Pages/Home";
 
 
 
 export default function App(){
   return(
     <>
-    <div className='wrap'>
-    <Header />
-    <Content />
-    <Footer/>
-    </div>
+    <Home/>
     </>
   );
 }
